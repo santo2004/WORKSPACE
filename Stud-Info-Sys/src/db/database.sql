@@ -1,10 +1,8 @@
 -- Create the database
 CREATE DATABASE StudentInfoDB;
-GO
 
 -- Use the created database
 USE StudentInfoDB;
-GO
 
 -- Create the Students table
 CREATE TABLE Students (
@@ -15,7 +13,6 @@ CREATE TABLE Students (
     email NVARCHAR(100) UNIQUE NOT NULL,
     phone NVARCHAR(15) NOT NULL
 );
-GO
 
 -- Create the Courses table
 CREATE TABLE Courses (
@@ -24,7 +21,6 @@ CREATE TABLE Courses (
     course_code NVARCHAR(20) UNIQUE NOT NULL,
     credits INT NOT NULL
 );
-GO
 
 -- Create the Enrollments table (Many-to-Many: Students & Courses)
 CREATE TABLE Enrollments (
@@ -35,7 +31,6 @@ CREATE TABLE Enrollments (
     FOREIGN KEY (student_id) REFERENCES Students(student_id) ON DELETE CASCADE,
     FOREIGN KEY (course_id) REFERENCES Courses(course_id) ON DELETE CASCADE
 );
-GO
 
 -- Create the Users table for authentication
 CREATE TABLE Users (
@@ -44,8 +39,8 @@ CREATE TABLE Users (
     password_hash NVARCHAR(255) NOT NULL,
     role NVARCHAR(20) CHECK (role IN ('admin', 'student', 'faculty')) NOT NULL
 );
-GO
 
+--displaying the tables created
 select * from Students;
 select * from Courses;
 select * from Enrollments;
