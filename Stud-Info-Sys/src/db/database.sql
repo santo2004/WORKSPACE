@@ -45,3 +45,8 @@ CREATE TABLE Users (
     role NVARCHAR(20) CHECK (role IN ('admin', 'student', 'faculty')) NOT NULL
 );
 GO
+
+select * from Students;
+select * from Courses;
+select * from Enrollments;
+select * from Users;
