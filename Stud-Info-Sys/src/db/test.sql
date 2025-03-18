@@ -3,55 +3,54 @@
 
 -- Use the created database
 USE test;
+DROP TABLE IF EXISTS mark;
+DROP TABLE IF EXISTS std;
 
-drop table stud;
-drop table studs;
-drop table students;
-drop table student;
+--drop table mark;
 
 -- Creating a student database
-create table student(
-    name varchar(MAX),
-    age INT, 
-    class varchar(15)
-);
+CREATE TABLE std(
+    stud_id INT IDENTITY(1,1) PRIMARY KEY,
+    name VARCHAR(MAX),
+    age INT,
+    class VARCHAR(15));
 
 --inserting values into stud
-insert into student(name,age,class) values
+insert into std(name,age,class) values
     ('santo',21,'4th year'),
     ('viji',20,'4th year'),
     ('shruthi',20,'4th year');
 
 --adding a new column dob
-ALTER TABLE student ADD DOB DATE;
+ALTER TABLE std ADD DOB DATE;
 
 --updating values for the new columns
-UPDATE student SET DOB = '2004-02-23' WHERE name = 'santo';
-UPDATE student SET DOB = '2004-04-02' WHERE name = 'viji';
-UPDATE student SET DOB = '2004-04-18' WHERE name = 'shruthi';
+UPDATE std SET DOB = '2004-02-23' WHERE name = 'santo';
+UPDATE std SET DOB = '2004-04-02' WHERE name = 'viji';
+UPDATE std SET DOB = '2004-04-18' WHERE name = 'shruthi';
 
 --displaying the created table
-SELECT * FROM student;
+SELECT * FROM std;
 
 --inserting more records into student
-INSERT INTO student(name, age, class, DOB) VALUES
+INSERT INTO std(name, age, class, DOB) VALUES
     ('sandra', 18, '1st year', '2007-03-15'),
     ('issa', 4, 'KG-1', '2020-12-21'),
     ('meghan',2,'kindergarden','2022-01-03');
 
-select * from student;
+select * from std;
 
-select name from student where age>=19;
-select name from student where age<=5;
+select name from std where age>=19;
+select name from std where age<=5;
 
-SELECT * FROM student ORDER BY age desc;
-select * from student ORDER by name ASC;
+SELECT * FROM std ORDER BY age desc;
+select * from std ORDER by name ASC;
 
-SELECT COUNT(*) AS strength FROM student;
-select max(age) as eldest from student;
-select min(age) as youngest from student;
+SELECT COUNT(*) AS strength FROM std;
+select max(age) as eldest from std;
+select min(age) as youngest from std;
 
-delete from student where name='meghan';
+delete from std where name='meghan';
 
 SELECT class, COUNT(*) AS student_count 
 FROM student 
@@ -62,5 +61,22 @@ FROM student
 GROUP BY class 
 HAVING COUNT(*) > 1;
 
-ALTER TABLE student ADD student_id INT IDENTITY(1,1) PRIMARY KEY;
+create table mark(
+    m_id int IDENTITY(1,1) PRIMARY KEY,
+    stud_id int,
+    sub varchar(max),
+    mark int);
 
+--ALTER TABLE std ADD stud_id INT IDENTITY(1,1) PRIMARY KEY;
+ALTER TABLE mark ADD FOREIGN KEY (stud_id) REFERENCES std(stud_id);
+
+-- Insert sample records into the mark table
+INSERT INTO mark (stud_id, sub, mark) VALUES
+    (1, 'Math', 95),
+    (1, 'Science', 88),
+    (2, 'Math', 92),
+    (2, 'Science', 85),
+    (3, 'Math', 89),
+    (3, 'Science', 90);
+
+select * from mark;
