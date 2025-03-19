@@ -103,3 +103,14 @@ from std s
 right join mark m 
 on s.stud_id=m.stud_id;
 
+SELECT s.stud_id, s.name, s.class, m.sub, m.mark
+FROM std s
+FULL OUTER JOIN mark m 
+ON s.stud_id = m.stud_id;
+
+select s.name, count(m.sub) as no_of_sub 
+from std s
+full outer join mark m
+on s.stud_id=m.stud_id
+group by s.name 
+HAVING count(m.sub)>1;
