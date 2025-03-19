@@ -3,7 +3,7 @@
 
 -- Use the created database
 USE test;
-DROP TABLE IF EXISTS mark;
+--DROP TABLE IF EXISTS mark;
 DROP TABLE IF EXISTS std;
 
 --drop table mark;
@@ -53,11 +53,11 @@ select min(age) as youngest from std;
 delete from std where name='meghan';
 
 SELECT class, COUNT(*) AS student_count 
-FROM student 
+FROM std 
 GROUP BY class;
 
 SELECT class, COUNT(*) AS student_count 
-FROM student 
+FROM std 
 GROUP BY class 
 HAVING COUNT(*) > 1;
 
@@ -80,3 +80,4 @@ INSERT INTO mark (stud_id, sub, mark) VALUES
     (3, 'Science', 90);
 
 select * from mark;
+
