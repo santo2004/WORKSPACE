@@ -5,6 +5,7 @@
 USE test;
 --DROP TABLE IF EXISTS mark;
 DROP TABLE IF EXISTS std;
+DROP TABLE IF EXISTS mark;
 
 --drop table mark;
 
@@ -80,4 +81,25 @@ INSERT INTO mark (stud_id, sub, mark) VALUES
     (3, 'Science', 90);
 
 select * from mark;
+
+select s.stud_id, s.name, m.sub, m.mark 
+from std s
+inner join mark m 
+on s.stud_id=m.stud_id;
+
+select s.stud_id, s.name, m.sub, m.mark 
+from std s
+left join mark m 
+on s.stud_id=m.stud_id;
+
+select s.stud_id, s.name, m.sub, m.mark 
+from std s
+left join mark m 
+on s.stud_id=m.stud_id
+where m.mark is not null;
+
+select s.stud_id, s.name, m.sub, m.mark 
+from std s
+right join mark m 
+on s.stud_id=m.stud_id;
 
